@@ -103,7 +103,7 @@ ordersRouter.post("/create", async (req,res)=>{
         let order = new OrdersModel(payload);
         await order.save();                
         await ClassesModel.findByIdAndUpdate(classID,{seatOccupied:classes.seatOccupied+1,clients:[...classes.clients,payload.userID]}) // increment seats occupied
-        let user = await UserModel.findById(_payload.userID);
+        let user = await UserModel.findById(payload.userID);
         let trainer = await UserModel.findById(classes.trainerID);
         await UserModel.findByIdAndUpdate(payload.userID,{ $push: { classes: classes._id } });
        // mail sending
@@ -123,8 +123,6 @@ ordersRouter.patch("/update/:id", async (req,res)=>{
         res.status(400).send({message:"Something went wrong",error:error.message})
     }
 })
-
-
 
 
 module.exports= {ordersRouter}
