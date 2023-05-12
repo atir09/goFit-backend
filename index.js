@@ -38,7 +38,7 @@ app.use("/admin", dashboardRouter);
 app.get('/auth/google',passport.authenticate('google', { scope: ['profile','email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' ,session:false}),function(req, res) {
-    res.redirect("https://go-fit.netlify.app/html/userdashboard")
+    res.successRedirect("https://go-fit.netlify.app/html/userdashboard")
   });
 
 
