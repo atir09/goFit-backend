@@ -35,12 +35,14 @@ app.use("/admin", dashboardRouter);
 
 // ***************google auth******************
 
+
 app.get('/auth/google',passport.authenticate('google', { scope: ['profile','email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' ,session:false}),function(req, res) {
     res.redirect("https://gofitnes.netlify.app/html/userdashboard")
   });
 
+  
 
 app.listen(process.env.port,async()=>{
     try {
