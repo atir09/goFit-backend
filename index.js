@@ -41,6 +41,8 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
     res.redirect("https://go-fit.netlify.app/html/userdashboard")
   });
 
+  
+
 
 app.listen(process.env.port,async()=>{
     try {
