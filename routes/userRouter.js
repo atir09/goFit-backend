@@ -1,5 +1,5 @@
 const {UserModel} = require("../models/userModel");
-const {client} = require("../config/redisDB")
+// const {client} = require("../config/redisDB")
 const express = require("express");
 const bcrypt = require('bcrypt');
 require('dotenv').config()
@@ -92,8 +92,8 @@ userRouter.post("/login", async (req,res)=>{
                 if(result){
                     var token = jwt.sign({ userID: user._id, role:user.role, name:user.name }, process.env.secretKey, { expiresIn:"7d"});
                     var refresh_token = jwt.sign({ userID: user._id, role:user.role, name:user.name}, process.env.refreshSecretKey, { expiresIn:"30d" });
-                    await client.HSET("token",email,token)
-                    await client.HSET("refresh_token",email,refresh_token)
+                    // await client.HSET("token",email,token)
+                    // await client.HSET("refresh_token",email,refresh_token)
                     if(user.role=="trainer"){
                         res.status(200).send({message:"Trainer Logged In",token,refresh_token,user, "OK": true})
                     }else{
